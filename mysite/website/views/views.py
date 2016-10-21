@@ -11,20 +11,20 @@ def hello(request):
     # html=t.render()
     # return HttpResponse(html)
     return render(request, 'hello.html')
-def home(request):
-    return render(request, 'home.html')
+def project(request):
+    return render(request, 'project.html')
 
 def find(request):
     if 'name' in request.GET and (request.GET['name']):
         name=request.GET['name']
-        ids=User.objects.filter(name__contains=name)
+        ids=User_yelp.objects.filter(name__contains=name)
         if len(ids)==0:
-            return render(request,'home.html',{'not_find': True})
-        return render(request, 'home.html',{'get_id':ids})
+            return render(request, 'project.html', {'not_find': True})
+        return render(request, 'project.html', {'get_id':ids})
     elif 'name' in request.GET:
-        return render(request, 'home.html', {'error1': True})
+        return render(request, 'project.html', {'error1': True})
     else:
-        return render(request, 'home.html')
+        return render(request, 'project.html')
 def search(request):
     if 'q' in request.GET and (request.GET['q']):
         q=request.GET['q']
@@ -46,13 +46,13 @@ def search(request):
             temp1=Restaurant
         return render(request, 'search.html', {'Restaurant': Restaurant,'popular':temp1, 'query': q})
     else:
-        return render(request, 'home.html', {'error2': True})
+        return render(request, 'project.html', {'error2': True})
 
 def recommend(request):
     if 'p' in request.GET and (request.GET['p']):
         p = request.GET['p']
-        user = User.objects.filter(name=p)
-        user1 = User.objects.filter(user_id=p)
+        user = User_yelp.objects.filter(name=p)
+        user1 = User_yelp.objects.filter(user_id=p)
         res = user or user1
         if len(res) == 0:
             return render(request, 'recommend.html', {'user': res, 'query': p, 'error3': True})
@@ -93,7 +93,7 @@ def recommend(request):
             res=i
         return render(request,'recommend.html',{'user': res,'query': p,'similar_user':x,'r':x1})
     else:
-        return render(request, 'home.html', {'error3': True})
+        return render(request, 'project.html', {'error3': True})
 
 
 ########################

@@ -1,6 +1,6 @@
 from django.db import models
 
-class User(models.Model):
+class User_yelp(models.Model):
     user_id = models.CharField(max_length=30)
     name = models.CharField(max_length=30)
     review_count = models.CharField(max_length=10)

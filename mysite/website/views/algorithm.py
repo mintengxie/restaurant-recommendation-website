@@ -36,7 +36,7 @@ def get_name_of_restaurant(id):
         return "Cannot find"
 def get_name_of_user(id1):
     try:
-        return User.objects.get(user_id=id1).name
+        return User_yelp.objects.get(user_id=id1).name
     except :
         return 'Cannot find'
 

@@ -9,7 +9,7 @@
         <p>The following are top {{ popular|length }} popular restaurants in {{ query }}:</p>
         <ul>
             {% for r in popular %}
-                <li>{{ r.name }}</li>
+                <li >{{ r.name }}</li>
                 {% endfor %}
         </ul>
     {% else %}
@@ -27,7 +27,7 @@
             <p style="color: red;">Please submit a search term.</p>
         {% endif %}
         <input type="text" name="q">
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" style="font-size: large">
         </fieldset>
         </form>
     {% endif %}

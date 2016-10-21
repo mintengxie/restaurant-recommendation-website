@@ -4,19 +4,23 @@
 
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <style>
+    header, footer {padding:1em;color:white;background-color:black;clear:left;text-align:center;}
+    p,h2,h3,h4,hr,a,form,li,table{max-width:800px;margin-left:200px;}
+    body{border: 20px solid gray;background: #ffffff; }
+    </style>
 </head>
 <body>
-    <h2 style="background-color:#b7bac3">CS 591 b1 Project</h2>
-    <h3>Yelp Recommendation and Analysis</h3>
+    <header ><h1>Restaurant Recommendation and Analysis</h1></header>
     <hr />
-    <form action="/home/" method="get">
-        <input type="submit" value="Go back to project page">
+    <form action="/project/" method="get">
+        <input type="submit" value="Go back to project page" style="font-size: large">
     </form>
     {% block content %}{% endblock %}
 
     {% block footer %}
     <hr>
-    <p>Thanks for visiting!</p>
+    <footer>Thanks for visiting!</footer>
     {% endblock %}
 </body>
 </html>

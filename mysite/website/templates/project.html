@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h4>Yelp Recommendation and Analysis</h4>
+    <p>For new user, find the top restaurants in your city:</p>
+    <form action="/search/" method="get">
+        <fieldset>
+        <legend>Input your City:</legend>
+        {% if error2 %}
+            <p style="color: red;margin-left:0;">Please input a search term.</p>
+        {% endif %}
+        <input type="text" name="q">
+        <input type="submit" value="Search" style="font-size: large">
+        </fieldset>
+    </form>
+
+    <p>For existing user, we could do the recommendation for you:</p>
+    <p>If you cannot remember your Yelp ID, </p>
+    <form action="/find/" method="get">
+        <fieldset>
+        <legend>Input your Name:</legend>
+        {% if error1 %}
+            <p style="color: red;margin-left:0;">Please input your name.</p>
+        {% endif %}
+        <input type="text" name="name">
+        <input type="submit" value="Find" style="font-size: large">
+        {% if not_find %}
+            <p style="margin-left:0;">Cannot find your info</p>
+        {% endif %}
+        {% if get_id %}
+            <p style="margin-left:0;">We find the following info:</p>
+            {% for i in get_id %}
+                <p style="margin-left:0;">ID: {{ i.user_id }}---Name:{{ i.name }}---#of Reviews:{{ i.review_count }}</p>
+            {% endfor %}
+        {% endif %}
+        </fieldset>
+    </form>
+    <form action="/recommend/" method="get">
+        <fieldset>
+        <legend>Input your ID:</legend>
+        {% if error3 %}
+            <p style="color: red;margin-left:0;">Please input valid info.</p>
+        {% endif %}
+        <input type="text" name="p">
+        <input type="submit" value="Recommend" style="font-size: large">
+        <p style="margin-left:0; " >###############data for test:###############</p>
+        <p style="margin-left:0; ">id: 7TFE0Qf0K9aj0jAXdSO43w (with 672 reviews)</p>
+        <p style="margin-left:0; ">id: UIPXzqRj5kCb7N_Q28Pseg (with 129 reviews)</p>
+        <p style="margin-left:0; ">id: gNvL9VNJWlPiGDM664iPCw (with 56 reviews)</p>
+        <p style="margin-left:0; ">id: zZACoxO7XbmuSWgBgbyBmQ (with 5 review )</p>
+        </fieldset>
+    </form>
+
+
+{% endblock %}

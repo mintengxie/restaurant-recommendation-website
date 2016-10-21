@@ -17,7 +17,7 @@ class ReviewAdmin(admin.ModelAdmin):
 class CheckinAdmin(admin.ModelAdmin):
     list_display = ('business_id', 'avg_rating', 'customer_flow', 'avg_ratings')
 
-admin.site.register(User, UserAdmin)
+admin.site.register(User_yelp, UserAdmin)
 admin.site.register(Business, BusinessAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(CheckIn)

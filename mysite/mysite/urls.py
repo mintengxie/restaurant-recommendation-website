@@ -13,6 +13,9 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from django.contrib import staticfiles
 from django.conf.urls import url
 from django.contrib import admin
 
@@ -25,10 +28,11 @@ urlpatterns = [
 
     #########################
     url(r'^hello/$', hello),
-    url(r'^home/$', home),
+    url(r'^project/$', project),
     url(r'^search/$', search),
     url(r'^recommend/$', recommend),
     url(r'^find/$', find),
     url(r'^homepage/$', homepage),
     #########################
 ]
+urlpatterns += staticfiles_urlpatterns()
