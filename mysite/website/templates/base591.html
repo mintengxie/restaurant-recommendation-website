@@ -1,0 +1,22 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <h2 style="background-color:#b7bac3">CS 591 b1 Project</h2>
+    <h3>Yelp Recommendation and Analysis</h3>
+    <hr />
+    <form action="/home/" method="get">
+        <input type="submit" value="Go back to project page">
+    </form>
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+    <hr>
+    <p>Thanks for visiting!</p>
+    {% endblock %}
+</body>
+</html>

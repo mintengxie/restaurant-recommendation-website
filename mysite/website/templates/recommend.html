@@ -1,0 +1,55 @@
+{% extends "base591.html" %}
+
+{% block title %}Search City{% endblock %}
+
+{% block content %}
+    <p>Your input: <strong>{{ query }}</strong></p>
+    {% if user %}
+        <p>We find your info:</p>
+        <p>Name: {{ user.name }}, ID: {{ user.user_id }}</p>
+        {% if similar_user %}
+            <p>At first, we find the similar users</p>
+            <table border="6" >
+            <caption>Similar Users(top 5)</caption>
+                <tr><th>id</th><th>name</th><th>similar_level</th></tr>
+                {% for u in similar_user %}
+                    <tr>
+                    {% for data in u %}
+                        <td align="middle">{{ data }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            {% if r %}
+                <p>Next, we could do the recommendation</p>
+                <table border="6" >
+                <caption>Restaurant Recommendations(top 5)</caption>
+                <tr><th>id</th><th>name</th><th>recommend_level</th></tr>
+                {% for rr in r %}
+                    <tr>
+                    {% for rrr in rr %}
+                        <td align="middle">{{ rrr }}</td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+                </table>
+            {% endif %}
+
+
+        {% else %}
+            <p>Sorry! We cannot do the recommendation for you, we know so little about you.</p>
+        {% endif %}
+    {% else %}
+        <p>Cannot find your info, please check your input</p>
+        <form action="/recommend/" method="get">
+        <fieldset>
+        <legend>Input your ID:</legend>
+        {% if error %}
+            <p style="color: red;">Please input valid info.</p>
+        {% endif %}
+        <input type="text" name="p">
+        <input type="submit" value="Recommend">
+        </fieldset>
+        </form>
+    {% endif %}
+{% endblock %}
