@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^recommend/$', recommend),
     url(r'^find/$', find),
     url(r'^homepage/$', homepage),
+    url(r'^restaurant/$',restaurant),
+    url(r'^analysis/$',analysis),
     #########################
 ]
 urlpatterns += staticfiles_urlpatterns()

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Project Home{% endblock %}
 
 {% block content %}
+    <img src="/static/images/yelp.jpg" alt="yelp image" width="160" height="160" style="margin-right: 50px; position: absolute;top: 200px;left: 1120px;" >
     <h4>Yelp Recommendation and Analysis</h4>
     <p>For new user, find the top restaurants in your city:</p>
     <form action="/search/" method="get">
@@ -45,12 +46,18 @@
         {% endif %}
         <input type="text" name="p">
         <input type="submit" value="Recommend" style="font-size: large">
-        <p style="margin-left:0; " >###############data for test:###############</p>
-        <p style="margin-left:0; ">id: 7TFE0Qf0K9aj0jAXdSO43w (with 672 reviews)</p>
-        <p style="margin-left:0; ">id: UIPXzqRj5kCb7N_Q28Pseg (with 129 reviews)</p>
-        <p style="margin-left:0; ">id: gNvL9VNJWlPiGDM664iPCw (with 56 reviews)</p>
-        <p style="margin-left:0; ">id: zZACoxO7XbmuSWgBgbyBmQ (with 5 review )</p>
         </fieldset>
+    </form>
+    <p>You could get the info about the restaurant:</p>
+    <form action="/restaurant/" method="get">
+    <fieldset>
+    <legend>Input the Restaurant Name:</legend>
+    {% if error4 %}
+        <p style="color: red;margin-left:0;">Please input restaurant name.</p>
+    {% endif %}
+    <input type="text" name="r">
+    <input type="submit" value="Get" style="font-size: large">
+    </fieldset>
     </form>
 
 

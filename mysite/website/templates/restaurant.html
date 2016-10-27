@@ -1,0 +1,66 @@
+{% extends "base591.html" %}
+{% block title %}Restaurant Info and Analysis{% endblock %}
+
+{% block content %}
+<h2 style="background-color:#81848a" xmlns="http://www.w3.org/1999/html">Restaurant Info and Analysis</h2>
+<p>You searched for: <strong>{{ query }}</strong></p>
+{% if Restaurant %}
+    <p>We find the following info:</p>
+    {% for r in Restaurant %}
+    <p>Name: {{ r.name }}</p>
+    <p>ID: {{ r.business_id }}</p>
+    <p>City: {{ r.city }}---Star: {{ r.star }}---#Reviews: {{ r.review_count }}</p>
+    <p>And the following plot is <strong >Avg Level</strong> of <strong style="color:red ">Customer Flow</strong> and <strong style="color: blue">Avg Rating</strong> for weekdays</p>
+    <canvas id="myCanvas" width="420" height="200" style="border:1px solid #d3d3d3;margin-left: 200px;">Your browser does not support the HTML5 canvas tag.</canvas>
+    <p style="line-height: 0px;word-spacing:30px;text-indent: 15px">Mon Tue Wed Thur Fri Sat Sun</p>
+     <hr>
+    {% endfor %}
+
+    <p>Now, you could choose a appropriate time to try the restaurant, which may lead to a better feeling with higher rating.</p>
+    <p>Besides, we find similar situations that when the restaurant has bigger customer flow, the average ratings may decrease in most times.
+    So we assume that at most times, the average rating will be inversely proportional to the customer flow <a href="/analysis/" style="margin-left: 0px">Check The result of analysis</a></p>
+
+
+{% else %}
+    <p>No Restaurant matched your search criteria.</p>
+    <p>Do you want the following restaurant?</p>
+    <ul>
+        {% for n in Name %}
+            <li>{{ n.name }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/restaurant/" method="get">
+    <fieldset>
+    <legend>Input the Restaurant Name:</legend>
+    {% if error4 %}
+        <p style="color: red;margin-left:0;">Please input restaurant name.</p>
+    {% endif %}
+    <input type="text" name="r">
+    <input type="submit" value="Get" style="font-size: large">
+    </fieldset>
+    </form>
+{% endif %}
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+var a={{ a }}
+var b={{ b }}
+var c={{ c }}
+var x=15-60
+var hh=200
+var w=15
+for(var i=0;i<7;i++){
+    ctx.fillStyle = "red";
+    x=x+60;
+    var h=c[i]
+    var y=hh-h
+    ctx.fillRect(x,y,w,h)
+    ctx.fillStyle = "blue";
+    var x1=x+15
+    var h1=b[i]
+    var y1=hh-h1
+    ctx.fillRect(x1,y1,w,h1)
+}
+</script>
+{% endblock %}

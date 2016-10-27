@@ -1,8 +1,9 @@
 {% extends "base591.html" %}
 
-{% block title %}Search City{% endblock %}
+{% block title %}Search City Restaurant{% endblock %}
 
 {% block content %}
+    <h2 style="background-color:#81848a">Search City Restaurant</h2>
     <p>You searched for: <strong>{{ query }}</strong></p>
     {% if Restaurant %}
         <p>We find {{ Restaurant|length }} Restaurant{{ Restaurant|pluralize }},</p>
@@ -23,8 +24,8 @@
         <form action="/search/" method="get">
         <fieldset>
         <legend>Input your City:</legend>
-        {% if error %}
-            <p style="color: red;">Please submit a search term.</p>
+        {% if error2 %}
+            <p style="color: red;margin-left: 0px;">Please submit a search term.</p>
         {% endif %}
         <input type="text" name="q">
         <input type="submit" value="Search" style="font-size: large">

@@ -1,0 +1,52 @@
+{% extends "base591.html" %}
+{% block title %}Restaurant Analysis{% endblock %}
+
+{% block content %}
+<h2 style="background-color:#81848a" xmlns="http://www.w3.org/1999/html">Restaurant Analysis</h2>
+<h3>Relationship between time period(weekday), customer flow and avg rating</h3>
+<p>At first, we divide the restaurants into popular restaurants which have large amount of reviews,
+    and not popular restaurants which have small amount of reviews.</p>
+<p style="line-height: 0px">One example for not popular restaurant:</p>
+<p style="line-height: 0px">name: International House of Pancakes , # of review: 31</p>
+<img src="/static/images/analysis1.jpg" alt="analysis1" width="500" height="400" style="margin-left: 200px;" >
+<p>So from the not popular restaurant example which has fewer number of reviews, we find that at Fridays,
+    the restaurant has smaller customer flow along with higher average rating ,
+    then at Saturdays, while the customer flow apparently increase,
+    the average rating decrease obviously.</p>
+<hr>
+<p style="line-height: 0px">Another example for popular restaurant:</p>
+<p style="line-height: 0px">name: Bellagio Hotel , # of review: 2270</p>
+<p style="line-height: 0px">(for those popular restaurant,
+    we may need to magnify the difference of avg ratings)</p>
+<img src="/static/images/analysis2.jpg" alt="analysis2" width="500" height="400" style="margin-left: 200px;" >
+<p>Then from the popular restaurant example which has large number of reviews,
+    we find that because of the larger amount of reviews,
+    the average ratings for each weekday are approximate,
+    so we need to magnify the difference between average ratings,
+    then after magnification, we could discover the similar situation,
+    such that the cutomer flows at workdays are smaller than at weekends,
+    but the average ratings at workdays are bigger than at weekends.</p>
+<hr>
+<p>Therefore, for both popular and not popular restaurants,
+    we could find similar situations that when the restaurant has bigger customer flow,
+    the average ratings may decrease in most times.To some degree,
+    we could assume that the average rating will be inversely proportional to the customer flow.</p>
+<p>Next, we try to check our assumption by randomly choosing and analyzing 500 restaurants,
+    which half is popular and the other half is not popular restaurants.
+    We check the slope of the fitting curve we get to prove the assumption
+    (If the value of slope is negative,
+    then it proves that the relation is inversely proportional).</p>
+<img src="/static/images/analysis3.jpg" alt="analysis3" width="800" height="400" style="margin-left: 200px;" >
+<p>In the plot, we could find that most of the points have slopes that is smaller than 0,
+    which proves our finding that
+    the average rating will be inversely proportional to the customer flow. </p>
+<p>The density plot of the above data looks like:</p>
+<img src="/static/images/analysis4.jpg" alt="analysis4" width="400" height="300" style="margin-left: 200px;" >
+<p>So the slopes have largest frequency in range [-0.05,0],
+    and few avg slopes are bigger than 0 which proves that at most times,
+    on average, when the restaurant has bigger customer flow, the average ratings may decrease.
+    In conclusion, the average rating will be inversely proportional to the customer flow at most cases. </p>
+<form action="/project/" method="get">
+        <input type="submit" value="Go back to project page" style="font-size: large">
+</form>
+{% endblock %}

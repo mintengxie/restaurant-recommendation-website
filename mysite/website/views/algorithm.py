@@ -82,4 +82,26 @@ def get_restaurant(similar_users):
     R_you_may_like = R_you_may_like.sort(columns='Recommend_Level', ascending=False).reset_index()
     del R_you_may_like['index']
     return R_you_may_like
+import re
+def get_plot(r_id):
+    try:
+        check=Checkin_analysis.objects.get(business_id=r_id)
+    except:
+        return [],[],[]
+    a=check.avg_rating
+    b=check.avg_ratings
+    c=check.customer_flow
+    a=float(a)
+    b=b.replace('[','').replace(']','').replace(',','').replace("'",'').split()
+    b=[float(i) for i in b]
 
+    c = re.findall('[a-zA-Z0-9]+', c)
+    c = [float(i) for i in c]
+    t=180
+    a1=a/(0.0001+max(b))*t
+    b1=[i/(0.0001+max(b))*t for i in b]
+    b1=[i-min(b1)+50 for i in b1]
+    b1=[i/(0.0001+max(b1))*t for i in b1]
+    c1=[i/(0.0001+max(c))*(t-20) for i in c]
+    c1=[i+20 for i in c1]
+    return a1,b1,c1

@@ -95,6 +95,23 @@ def recommend(request):
     else:
         return render(request, 'project.html', {'error3': True})
 
+def restaurant(request):
+    if 'r'in request.GET and (request.GET['r']):
+        r=request.GET['r']
+        Restaurant=Business.objects.filter(name=r)
+        names=Business.objects.filter(name__icontains=r)
+        if len(Restaurant)==0:
+            return render(request, 'restaurant.html', {'Restaurant': Restaurant, 'query': r, 'Name': names, 'error4': True})
+        if len(Restaurant)>=1:
+            #############
+            for i in Restaurant:
+                a,b,c=get_plot(i.business_id)
+            #############
+            return render(request,'restaurant.html',{'Restaurant':Restaurant, 'query':r,'a':a,'b':b,'c':c})
+
+    return render(request,'project.html',{'error4':True})
+def analysis(request):
+    return render(request,'analysis.html')
 
 ########################
 #implement the recommendation algorithm

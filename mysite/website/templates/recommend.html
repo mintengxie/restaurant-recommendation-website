@@ -1,8 +1,9 @@
 {% extends "base591.html" %}
 
-{% block title %}Search City{% endblock %}
+{% block title %}Restaurant Recommendation{% endblock %}
 
 {% block content %}
+    <h2 style="background-color:#81848a">Restaurant Recommendation</h2>
     <p>Your input: <strong>{{ query }}</strong></p>
     {% if user %}
         <p>We find your info:</p>
@@ -44,8 +45,8 @@
         <form action="/recommend/" method="get">
         <fieldset>
         <legend>Input your ID:</legend>
-        {% if error %}
-            <p style="color: red;">Please input valid info.</p>
+        {% if error3 %}
+            <p style="color: red;margin-left: 0px;">Please input valid info.</p>
         {% endif %}
         <input type="text" name="p">
         <input type="submit" value="Recommend" style="font-size: large">
